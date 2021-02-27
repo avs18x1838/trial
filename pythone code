@@ -1,0 +1,35 @@
+import pygame, random ,sys
+from pygame import display, font, draw , event
+pygame.init()
+screen = display.set_mode((600,600))
+display.set_caption("Draw Pixels!")
+x = 10
+y = 10
+purple = (75, 0, 130)
+screen.fill((0,0,0))
+myfont = font.Font("freesansbold.ttf", 20)
+myrender = myfont.render("DRAW PIXELS", True, purple)
+screen.blit(myrender, (325, 10))
+while True:
+  allevents = event.get()
+  for myevent in allevents:
+     if myevent.type == pygame.QUIT:
+       sys.exit() 
+  if myevent.type == pygame.KEYDOWN:
+      if myevent.key == pygame.K_RIGHT:
+        x = x + 10
+  if myevent.type == pygame.KEYDOWN:
+      if myevent.key == pygame.K_LEFT:
+        x = x - 10
+  if myevent.type == pygame.KEYDOWN:
+      if myevent.key == pygame.K_UP:
+        y = y - 10 
+  if myevent.type == pygame.KEYDOWN:
+      if myevent.key == pygame.K_DOWN:
+        y = y + 10            
+  R = random.randint(0,255)
+  G = random.randint(0,255)
+  B = random.randint(0,255)
+  rectangle = (x,y, 10,10)
+  draw.rect(screen, (R,G,B), rectangle)
+  display.flip()
